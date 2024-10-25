@@ -51,7 +51,7 @@ public class SimpleHashMap<K, V> {
      *         if the given key was not previously in the map.
      *
      */
-    public V put(K key, V value) {
+    public synchronized V put(K key, V value) {
         if (key == null)
             throw new NullPointerException("Key can't be null.");
 
@@ -74,7 +74,7 @@ public class SimpleHashMap<K, V> {
      * @param key The key for which to return the value.
      * @return The value for the given key, or null if the key is not present.
      */
-    public V get(K key) {
+    public synchronized V get(K key) {
         List<Entry<K,V>> bucket = table.get(hash(key));
         for (Entry<K, V> e : bucket) {
             if (e.key.equals(key)) {
